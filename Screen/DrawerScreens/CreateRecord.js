@@ -28,6 +28,7 @@ const CreateRecordScreen = () => {
   const [respR, setRespRate] = useState('');
   const [bloodO, setBloodOxygen] = useState('');
   const [heartB, setHearBeat] = useState('');
+  const [status, setStatus] = useState('');
   const [comment, setComment] = useState('');
   const [completeName, setName] = useState('');
   const [userId, setUserId] = useState('');
@@ -47,6 +48,11 @@ const CreateRecordScreen = () => {
     setName('');
     setSelected('');
   }
+
+  const patientStatus = [
+    {key:"Stable", value: "Stable"},
+    {key:"Critical", value: "Critical"}
+  ];
 
   for (var i in residents){
     data.push({key: residents[i].sin, value: residents[i].sin});
@@ -144,7 +150,7 @@ const CreateRecordScreen = () => {
       setLoading(true);
       fetch('http://localhost:3000/residentRecords/?user_id=' + userId + '&completename=' + completeName + '&sin=' + resident + 
       '&day=' + day + '&blood_pressure=' + bloodP +'&respiration_rate=' + respR + '&blood_oxygen=' + bloodO + 
-      '&heart_beat=' + heartB + '&comment=' + comment ,
+      '&heart_beat=' + heartB + '&status=' + status + '&comment=' + comment ,
       {
         method: "POST",
           headers: {
@@ -227,6 +233,23 @@ const CreateRecordScreen = () => {
           />
         </View>
         <View style={{ marginTop: 5, marginLeft: 35, flexDirection: "row" }}>
+        <Text
+             style={{
+              fontSize: 15,
+              textAlign: 'center',
+              marginBottom: 5,
+              fontWeight: "bold",
+            }}>
+            Status
+          </Text>
+        </View>
+        <View style={{ marginTop: 0, marginLeft: 35, flexDirection: "row" }}>
+          <SelectList
+            data={patientStatus}
+            setSelected = {setStatus} 
+          /> 
+        </View>
+        <View style={{ marginTop: 10, marginLeft: 35, flexDirection: "row" }}>
           <Text
               style={{
                 fontSize: 15,

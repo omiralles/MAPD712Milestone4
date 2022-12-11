@@ -92,7 +92,7 @@ const RecordsScreen = () => {
 
     const renderItem = ({ item }) => (
         <UserRecordCell sin={item.sin} recordDate={item.day} bloodPreaseure={item.blood_presure} respiratoryRate={item.respiration_rate}
-        bloodOxygen={item.blood_oxygen} heartBeat={item.heart_beat} comment={item.comment}
+        bloodOxygen={item.blood_oxygen} heartBeat={item.heart_beat} status={item.status} comment={item.comment}
          />
       );
 
@@ -110,7 +110,7 @@ const RecordsScreen = () => {
                 autoCapitalize='none'
                 autoCorrect={false}
                 clearButtonMode= "always"
-                placeholder='Search'
+                placeholder='Search by day / sin / completename'
                 placeholderTextColor="grey"
                 value={query}
                 onChangeText={queryText => handleSearch(queryText)}

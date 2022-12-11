@@ -39,7 +39,7 @@ class ResidentCell extends React.Component {
             fetch('http://localhost:3000/residentRecords/?id=' + this.props.id + '&user_id=' + this.props.userid + '&completename=' + this.props.completename + 
               '&sin=' + this.props.sin + '&day=' + this.props.recordDate + '&blood_pressure=' + this.state.bloodPress + 
               '&respiration_rate=' + this.state.respRate + '&blood_oxygen=' + this.state.bloodOx + 
-              '&heart_beat=' + this.state.hBeat + '&comment=' + this.state.cmmt ,
+              '&heart_beat=' + this.state.hBeat + '&status=' + this.state.status + '&comment=' + this.state.cmmt ,
               {
                   method: "PUT",
                   headers: {
@@ -110,11 +110,21 @@ class ResidentCell extends React.Component {
   }
 
   render() {
+    var textColor = {};
+      
+    if (this.props.status == "Critical") {
+      textColor = {color: 'red'};
+    }
+    else {
+      textColor = {color: 'black'};
+    }
+
     return (
       <View style={styles.CellContainer}>
         <Image source = {require("../../Image/heartrate.png")} style = {styles.CellIcon}/>
         <View style={styles.CellDataContainer} margin={10}>
           <Text style={{fontWeight: "bold"}}>Day: {this.props.recordDate}</Text>
+          <Text style={[this.props.style, textColor]}>Status: {this.props.status}</Text>
           <Text>Complete name: {this.props.completename}</Text>
           <Text>SIN: {this.props.sin}</Text>
           <Text style={{fontWeight: "bold"}}>Blood pressure:</Text>

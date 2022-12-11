@@ -9,12 +9,22 @@ import {
 
 class ResidentCell extends React.Component {
   
-  render() {   
+  render() {
+    var textColor = {};
+      
+    if (this.props.status == "Critical") {
+      textColor = {color: 'red', fontWeight: "bold"};
+    }
+    else {
+      textColor = {color: 'black', fontWeight: "bold"};
+    }
+
     return (
       <View style={styles.CellContainer}>
         <Image source = {require("../../Image/heartrate.png")} style = {styles.CellIcon}/>
         <View style={styles.CellDataContainer} margin={10}>
           <Text style={{fontWeight: "bold"}}>Day: {this.props.recordDate}</Text>
+          <Text style={[this.props.style, textColor]}>Status: {this.props.status}</Text>
           <Text>Blood pressure: {this.props.bloodPreaseure}</Text>
           <Text>Respiration rate: {this.props.respiratoryRate}</Text>
           <Text>Blood oxygen: {this.props.bloodOxygen}</Text>

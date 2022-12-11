@@ -86,7 +86,7 @@ const RecordsScreen = () => {
     const renderItem = ({ item }) => (
         <DNRecordCell id={item.id} userid={item.user_id} completename={item.completename} sin={item.sin} recordDate={item.day} 
         bloodPressure={item.blood_pressure} respiratoryRate={item.respiration_rate}
-        bloodOxygen={item.blood_oxygen} heartBeat={item.heart_beat} comment={item.comment}
+        bloodOxygen={item.blood_oxygen} heartBeat={item.heart_beat} status={item.status} comment={item.comment}
          />
       );
 
